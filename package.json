@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "dev": "browser-refresh server.js",
+    "start": "node server.js",
+    "test": "mocha --recursive --exit"
+  },
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mocha": "^10.2.0",
+    "node-fetch": "^3.3.2",
+    "pug": "^3.0.2"
+  },
+  "pre-commit":{
+    "run": [
+      "test"
+    ]
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  }
+}
