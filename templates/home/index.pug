@@ -1,18 +1,4 @@
 extends ../layout.pug
 
 block content
-    br
-    form(method='get').container.row
-            .col-6
-                input#floatingSearch.form-control(type='search' placeholder="titre, auteur, compositeur..." name= 'search' value= search)
-            .col-6
-                button.btn.btn-success(type='submit') Recherche
-    hr
-    if musics
-            each music in musics
-                if music.cover
-                    .card(style='width: 20rem; margin-left: 2rem;') 
-                        img.card-img-top(src=`${music.cover}` alt='...')
-                        h5.card-title #{music.title}
-                        audio(controls src=`${music.preview}`)
-                    br
+    .homeImage
