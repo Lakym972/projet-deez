@@ -17,6 +17,14 @@ class RegisterController {
         newUser.save().then(() => {
             req.flash('notify', 'Votre compte a bien été crée !');
             res.redirect('/');
+        }).catch((error) => {
+            if(error.code == 11000 && error.keyPattern.email) {
+                res.render('register/index', {user : newUser, error : `L'email ${error.keyValue.email} est déjà utilisé !`});
+            } else if(error.code == 11000 && error.keyPattern.username) {
+                res.render('register/index', {user : newUser, error : `Le nom d'utilisateur ${error.keyValue.username} est déjà utilisé !`});
+            } else {
+                res.render('register/index', {user : newUser, error : 'Une erreur est survenue !'});
+            }
         })
     }
 }
