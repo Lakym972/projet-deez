@@ -1,6 +1,7 @@
 import homeController from "../src/controllers/HomeController.js";
 import blindController from "../src/controllers/BlindController.js";
 import registerController from "../src/controllers/RegisterController.js";
+import loginController from "../src/controllers/LoginController.js";
 
 
 export default (app) => {
@@ -23,5 +24,9 @@ export default (app) => {
 
     app.post('/register', (req, res) => {
         registerController.register(req, res);
+    });
+
+    app.get('/login', (req, res) => {
+        loginController.index(req, res);
     });
 }
