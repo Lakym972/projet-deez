@@ -1,0 +1,31 @@
+extends ../layout.pug
+
+block content
+
+    .container.mt-5
+
+        .row.justify-content-center
+            .col-md-6
+                h1 Inscription
+                if error
+                    .alert.alert-danger #{error}
+                form(method="post")
+                    input(type="hidden" name="csrf" value=csrf)
+                    .form-group
+                        label(for='nom d\'utilisateur') Nom d'utilisateur :
+                        input.form-control(type='text', name="username" id='username', value= user.username, placeholder='Votre nom d\'utilisateur')
+                    .form-group
+                        label(for='nom') Nom :
+                        input.form-control(type='text', name="lastname" id='nom', value= user.lastname, placeholder='Votre nom')
+                    .form-group
+                        label(for='prenom') Prénom :
+                        input.form-control(type='text', name="firstname", id='prenom', value= user.firstname, placeholder='Votre prénom')
+
+                    .form-group
+                        label(for='email') Email :
+                        input.form-control(type='email', name="email", id='email', value= user.email, placeholder='Votre email')
+
+                    .form-group
+                        label(for='password') Mot de passe :
+                        input.form-control(type='password', name="password", id='password', placeholder='Votre mot de passe')
+                    button.btn.btn-primary.mt-2(type='submit') S'inscrire

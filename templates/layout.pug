@@ -11,7 +11,7 @@ html(lang="en")
         header
                 nav.navbar.navbar-expand-lg.bg-body-secondary
                     a.navbar-brand(href="/")
-                        img(src="./assets/logo/logo.jpg" alt="logo" width="70" height="60")
+                        img(src="/assets/logo/logo.jpg" alt="logo" width="70" height="60")
                     .collapse.navbar-collapse#navbarNavDropdown
                         ul.navbar-nav    
                                 li.nav-item
@@ -23,13 +23,26 @@ html(lang="en")
                                         | Compte
                                     ul.dropdown-menu
                                         li
-                                            a.dropdown-item(href="#") Inscription
+                                            a.dropdown-item(href="/register") Inscription
                                         li
                                             a.dropdown-item(href="#") Connexion
 
+        - var messages = getMessages()
+
+        if messages.info || messages.notify || messages.error
+            #flashMessages.mb-0
+                if messages.info
+                    each msg in messages.info
+                        .alert.alert-info= msg
+                if messages.notify
+                    each msg in messages.notify
+                        .alert.alert-success= msg
+                if messages.error
+                    each msg in messages.error
+                        .alert.alert-danger= msg
         block content
 
-        footer.bg-body-secondary 
+        footer.bg-body-secondary
             p.text-center © Top-Music 2024
 
 
