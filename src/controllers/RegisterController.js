@@ -1,5 +1,5 @@
 import UserRepository from "../repository/UserRepository.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 class RegisterController {
     index(req, res) {

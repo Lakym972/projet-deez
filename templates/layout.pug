@@ -22,10 +22,16 @@ html(lang="en")
                                     a.nav-link.active.dropdown-toggle(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false")
                                         | Compte
                                     ul.dropdown-menu
-                                        li
-                                            a.dropdown-item(href="/register") Inscription
-                                        li
-                                            a.dropdown-item(href="/login") Connexion
+                                        if !app.user
+                                            li
+                                                a.dropdown-item(href="/register") Inscription
+                                            li
+                                                a.dropdown-item(href="/login") Connexion
+                                        else
+                                            li
+                                                a.dropdown-item(href="/") Profil
+                                            li
+                                                a.dropdown-item(href="/logout") Déconnexion
 
         - var messages = getMessages()
 

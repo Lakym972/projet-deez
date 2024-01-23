@@ -29,4 +29,12 @@ export default (app) => {
     app.get('/login', (req, res) => {
         loginController.index(req, res);
     });
+
+    app.post('/login', (req, res) => {
+        loginController.login(req, res);
+    });
+
+    app.get('/logout', (req, res) => {
+        loginController.logout(req, res);
+    });
 }
