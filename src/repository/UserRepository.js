@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     password : {type: String, required: true},
     roles : {type: Array, required: true},
     a2f : {type: String},
-    enable_a2f : {type: Boolean},
+    enable_a2f : {type: Boolean, default: false},
     date : {type: Date, default: Date.now}
 });
 

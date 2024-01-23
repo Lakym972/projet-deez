@@ -2,6 +2,7 @@ import UserRepository from "../repository/UserRepository.js";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 import Cookies from 'cookies';
+import { authenticator } from "otplib";
 
 class LoginController {
 
@@ -22,7 +23,7 @@ class LoginController {
                         roles: currentUser.roles,
                         conected: false
                     }
-                    res.redirect('/a2f');
+                    res.redirect('/login/a2f');
                 } else {
                     req.session.user = {
                         username: currentUser.username,
@@ -49,6 +50,32 @@ class LoginController {
         cookies.set('jwt', '', { expires: 0 });
         req.flash('notify', 'Deconnexion reussie !');
         res.redirect('/');
+    }
+
+    a2f(req, res) {
+        if(req.session.user && req.session.user.conected == false) {
+            res.render('login/a2f')
+        } else {
+            res.redirect('/');
+        }
+    }
+
+    async a2fProcess(req, res) {
+        if(req.session.user && req.session.user.conected == false) {
+            if(req.body.number_2fa) {
+                let currentUser = await UserRepository.findOne({ email: req.session.user.email });
+                if(authenticator.check(req.body.number_2fa, currentUser.a2f)) {
+                    req.session.user.conected = true;
+                    req.flash('notify', 'Connexion reussie !');
+                    res.redirect('/');
+                    return;
+                }
+            }
+            req.flash('error', 'La double authentification a échoué !');
+            res.redirect('/login/a2f');
+        } else {
+            res.redirect('/');
+        }
     }
 
 }

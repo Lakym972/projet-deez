@@ -18,19 +18,17 @@ app.use(session({
 
 
 
-/*
-if(process.env.APP_ENV === 'dev') {
+
+/* if(process.env.APP_ENV === 'dev') {
     app.use((request, response, next) => {
         request.session.user = {
-            lastname:  'LECOMTE',
-            firstname: 'Cyril',
-            email: 'cyrhades76@gmail.com',
-            roles: ['user', 'admin']
+            username:  'toto',
+            email: 'aaa@aaa.com',
         };
         next();
     })
-}
-*/
+} */
+
 
 app.use((request, response, next) => {
     response.locals.app = {
