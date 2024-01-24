@@ -2,6 +2,8 @@ extends ../layout.pug
 
 block content
     br
+    if error
+        .alert.alert-danger #{error}
     form(method='get').container.row
             .col-6
                 input#floatingSearch.form-control(type='search' placeholder="titre, auteur, compositeur..." name= 'search' value= search)
@@ -21,5 +23,6 @@ block content
                                 input(type="hidden" name="title" value=music.title)
                                 input(type="hidden" name="cover" value=music.cover)
                                 input(type="hidden" name="preview" value=music.preview)
-                                button.mt-2.mb-2.btn.btn-primary Enregistrer
+                                if music.exist == false
+                                    button.mt-2.mb-2.btn.btn-primary Enregistrer
                     br

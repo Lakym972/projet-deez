@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import MusicRepository from "../repository/MusicRepository.js";
 
 export function search(keyword) {
 
@@ -15,8 +16,14 @@ export function search(keyword) {
     return fetch(url, options)
     .then(res => res.json())
     .then(json => 
-      json.data.map(music => {
-        return {id_rapi : music.id, title: music.title, cover: music.album.cover_medium, preview: music.preview}
+       json.data.map(async (music) => {
+        return {
+          id_rapi : music.id, 
+          title: music.title, 
+          cover: music.album.cover_medium, 
+          preview: music.preview,
+          exist: (await MusicRepository.findOne({ id_rapi: music.id }) ? true : false)
+        }
       })
     )
     .catch(err => console.error('error:' + err));

@@ -8,10 +8,11 @@ class HomeController {
     }
 
     process(req, res) {
-
         if(req.query.search != "" && req.query.search != undefined) {
             search(req.query.search).then(musics => {
-            res.render('home/search', {search: req.query.search, musics})
+                Promise.all(musics).then(musics => {
+                    res.render('home/search', {search: req.query.search, musics})
+                })
             });
         } else {
             res.render('home/search')
