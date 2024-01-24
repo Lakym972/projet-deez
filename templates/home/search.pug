@@ -15,4 +15,11 @@ block content
                         img.card-img-top(src=`${music.cover}` alt='...')
                         h5.card-title #{music.title}
                         audio(controls src=`${music.preview}`)
+                        if app.user && app.user.roles && app.user.roles.includes('admin')
+                            form(method='post')
+                                input(type="hidden" name="id_rapi" value=music.id_rapi)
+                                input(type="hidden" name="title" value=music.title)
+                                input(type="hidden" name="cover" value=music.cover)
+                                input(type="hidden" name="preview" value=music.preview)
+                                button.mt-2.mb-2.btn.btn-primary Enregistrer
                     br

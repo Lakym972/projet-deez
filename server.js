@@ -19,15 +19,16 @@ app.use(session({
 
 
 
-/* if(process.env.APP_ENV === 'dev') {
+if(process.env.APP_ENV === 'dev') {
     app.use((request, response, next) => {
         request.session.user = {
             username:  'toto',
             email: 'aaa@aaa.com',
+            roles: ['user','admin']
         };
         next();
     })
-} */
+}
 
 
 app.use((request, response, next) => {

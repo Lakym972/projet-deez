@@ -1,4 +1,5 @@
 import {search} from '../services/MusicService.js';
+import MusicRepository from '../repository/MusicRepository.js';
 
 class HomeController {
 
@@ -15,6 +16,27 @@ class HomeController {
         } else {
             res.render('home/search')
         }
+    }
+
+    addMusic(req, res) {
+        const newMusic = new MusicRepository();
+        newMusic.id_rapi = req.body.id_rapi;
+        newMusic.title = req.body.title;
+        newMusic.cover = req.body.cover;
+        newMusic.preview = req.body.preview;
+
+        newMusic.save().then(() => {
+            req.flash('notify', 'Musique ajoutée !');
+            res.render('home/search', {search: req.query.search})
+
+        }).catch((error) => {
+            if(error.code == 11000 && error.keyPattern.id_rapi) {
+                res.render('home/search', {error: 'Musique déja existante !'})
+            } else {
+                res.render('home/search', {error: 'Une erreur est survenue !'})
+            }
+        })
+
     }
 }
 

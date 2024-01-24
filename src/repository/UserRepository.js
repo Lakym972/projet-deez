@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
     lastname : {type: String, required: false},
     email : {type: String, unique: true, required: true},
     password : {type: String, required: true},
-    roles : {type: Array, required: true},
+    roles : {type: Array, required: true, default: ["user"]},
     a2f : {type: String},
     enable_a2f : {type: Boolean, default: false},
     date : {type: Date, default: Date.now}

@@ -3,6 +3,7 @@ import blindController from "../src/controllers/BlindController.js";
 import registerController from "../src/controllers/RegisterController.js";
 import loginController from "../src/controllers/LoginController.js";
 import profilController from "../src/controllers/ProfilController.js";
+import adminController from "../src/controllers/AdminController.js";
 
 
 export default (app) => {
@@ -13,6 +14,10 @@ export default (app) => {
 
     app.get('/search', (req, res) => {
         homeController.process(req, res);
+    });
+
+    app.post('/search', (req, res) => {
+        homeController.addMusic(req, res);
     });
 
     app.get('/blind', (req, res) => {
@@ -53,5 +58,9 @@ export default (app) => {
 
     app.post('/profil', (req, res) => {
         profilController.process(req, res);
+    });
+
+    app.get('/admin', (req, res) => {
+        adminController.index(req, res);
     });
 }

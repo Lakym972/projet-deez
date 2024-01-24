@@ -32,6 +32,9 @@ html(lang="en")
                                                 a.dropdown-item(href="/profil") Profil
                                             li
                                                 a.dropdown-item(href="/logout") Déconnexion
+                                if app.user && app.user.roles && app.user.roles.includes('admin')
+                                    li.nav-item
+                                        a.nav-link.active(aria-current="page" href="/admin") Administrator 
 
         - var messages = getMessages()
 
