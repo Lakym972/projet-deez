@@ -4,6 +4,7 @@ import registerController from "../src/controllers/RegisterController.js";
 import loginController from "../src/controllers/LoginController.js";
 import profilController from "../src/controllers/ProfilController.js";
 import adminController from "../src/controllers/AdminController.js";
+import playListController from "../src/controllers/PlayListController.js";
 
 
 export default (app) => {
@@ -62,5 +63,21 @@ export default (app) => {
 
     app.get('/admin', (req, res) => {
         adminController.index(req, res);
+    });
+
+    app.get('/admin/user_list', (req, res) => {
+        adminController.userList(req, res);
+    });
+
+    app.get('/admin/music_list', (req, res) => {
+        adminController.musicList(req, res);
+    });
+
+    app.get('/playlist/:id([0-9]+)', (req, res) => {
+        playListController.index(req, res);
+    });
+
+    app.post('/playlist/:id([0-9]+)', (req, res) => {
+        playListController.addPlaylist(req, res);
     });
 }

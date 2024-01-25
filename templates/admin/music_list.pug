@@ -1,0 +1,31 @@
+extends ../layout.pug
+
+block content
+    if error 
+        .alert.alert-danger #{error}
+    if musics  
+        table.table 
+            thead 
+                tr 
+                    th(scope='col') #
+                    th(scope='col') title
+                    th(scope='col') cover
+                    th(scope='col') preview
+                    th
+            tbody
+                each music in musics
+                    tr 
+                        th(scope='row') #{music.id_rapi}
+                        td= music.title 
+                        td= music.cover
+                        td= music.preview
+                        td
+                            button.btn.btn-danger.btn-sm.me-2(type='button')
+                                a#i-trash(href='/admin/user/delete/'+ music.id)
+                                    i.bi.bi-trash3
+                            button.btn.btn-primary.btn-sm(type='button')
+                                a#i-pen(href="/admin/user/edit/"+ music.id) 
+                                    i.bi.bi-pencil-square
+                    tr
+    else 
+        .alert.alert-info Aucun utilisateur

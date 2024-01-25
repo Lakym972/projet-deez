@@ -1,0 +1,17 @@
+extends ../layout.pug
+
+block content
+    .container.mt-5
+        .row.justify-content-center
+            .col-md-6
+                if error
+                    .alert.alert-danger #{error}
+                form(method="post")
+                    .form-group
+                        input.form-control(type='text', name="name", placeholder='Nom de la playlist')
+                    if music
+                        .card(style='width: 35rem; margin-left: 2rem;') 
+                            img.card-img-top(src=`${music.cover}` alt='...')
+                            h5.card-title #{music.title}
+                            audio(controls src=`${music.preview}`)
+                    button.mt-2.mb-2.btn.btn-primary(type='submit') Enregistrer dans la playlist 

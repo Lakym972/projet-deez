@@ -1,4 +1,12 @@
 extends ../layout.pug
 
 block content
-    h1 Admin 
+    h1 Admin
+    .container.text-center 
+        .row 
+            .col-6.card
+                .card-body 
+                    a(href="admin/user_list") Liste des Utilisateurs
+            .col-6.card
+                .card-body 
+                    a(href="admin/music_list") Liste des Musiques

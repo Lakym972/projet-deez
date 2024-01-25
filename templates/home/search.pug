@@ -25,4 +25,8 @@ block content
                                 input(type="hidden" name="preview" value=music.preview)
                                 if music.exist == false
                                     button.mt-2.mb-2.btn.btn-primary Enregistrer
+                                else
+                                    button.btn.btn-light.btn-sm.me-2(type='button')
+                                        a#i-star(href="/playlist/"+ music.id_rapi)
+                                            i.bi.bi-star
                     br

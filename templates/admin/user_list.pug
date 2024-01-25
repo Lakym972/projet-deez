@@ -1,0 +1,42 @@
+extends ../layout.pug
+
+block content
+    if error 
+        .alert.alert-danger #{error}
+    if users  
+        table.table 
+            thead 
+                tr 
+                    th(scope='col') enable_a2f
+                    th(scope='col') Nom d'utilisateur
+                    th(scope='col') Nom
+                    th(scope='col') Prénom
+                    th(scope='col') Email
+                    th(scope='col') roles
+                    th(scope='col') a2f
+                    th(scope='col') date
+                    th
+            tbody
+                each user in users
+                    tr 
+                        th(scope='row')
+                            .form-check.form-switch
+                                input.form-check-input(type='checkbox' role='switch')
+                        td= user.username 
+                        td= user.lastname
+                        td= user.firstname
+                        td= user.email
+                        td= user.roles
+                        td= user.a2f
+                        td= user.date
+                        td
+                            button.btn.btn-danger.btn-sm.me-2(type='button')
+                                a#i-trash(href='/admin/user/delete/'+ user.id)
+                                    i.bi.bi-trash3
+                            button.btn.btn-primary.btn-sm(type='button')
+                                a#i-pen(href="/admin/user/edit/"+ user.id) 
+                                    i.bi.bi-pencil-square
+                    tr
+    else 
+        .alert.alert-info Aucun utilisateur
+
