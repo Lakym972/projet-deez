@@ -73,11 +73,35 @@ export default (app) => {
         adminController.musicList(req, res);
     });
 
+    app.get('/admin/playlist_list', (req, res) => {
+        adminController.playList(req, res);
+    });
+
     app.get('/playlist/:id([0-9]+)', (req, res) => {
         playListController.index(req, res);
     });
 
     app.post('/playlist/:id([0-9]+)', (req, res) => {
         playListController.addPlaylist(req, res);
+    });
+
+    app.get('/admin/playlist/delete/:id', (req, res) => {
+        adminController.deletePlaylist(req, res);
+    });
+
+    app.get('/admin/playlist/edit/:id', (req, res) => {
+        adminController.editPlaylist(req, res);
+    });
+
+    app.post('/admin/playlist/edit/:id', (req, res) => {
+        adminController.updatePlaylist(req, res);
+    });
+
+    app.get('/admin/playlist/add', (req, res) => {
+        adminController.newPlaylist(req, res);
+    });
+
+    app.post('/admin/playlist/add', (req, res) => {
+        adminController.addPlaylist(req, res);
     });
 }

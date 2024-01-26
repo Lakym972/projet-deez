@@ -1,0 +1,8 @@
+extends ../layout.pug
+
+block content
+    h1 Choisissez un nom pour votre Playlist 
+    form(method="post")
+        if playlist 
+            input.form-control(type="text", name="name", value=playlist.name)
+            button.btn.btn-primary.mt-2(type='submit') Validez

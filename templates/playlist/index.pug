@@ -8,7 +8,13 @@ block content
                     .alert.alert-danger #{error}
                 form(method="post")
                     .form-group
-                        input.form-control(type='text', name="name", placeholder='Nom de la playlist')
+                        input#newPlaylist.form-control.mb-2(type='text', name="name", placeholder='Nom de la playlist')
+                    .form-group
+                       select#choicePlaylist.form-control.mb-2(name="name2")
+                            option(value="")
+                            if playlists 
+                                each playlist in playlists 
+                                    option(value=playlist.name) #{playlist.name}
                     if music
                         .card(style='width: 35rem; margin-left: 2rem;') 
                             img.card-img-top(src=`${music.cover}` alt='...')

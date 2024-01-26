@@ -37,7 +37,6 @@ class HomeController {
                 res.render('home/search', {error: 'Une erreur est survenue !'})
             }
         })
-
     }
 }
 

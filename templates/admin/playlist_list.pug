@@ -1,0 +1,34 @@
+extends ../layout.pug
+
+block content
+    if error 
+        .alert.alert-danger #{error}
+    if playLists  
+        table.table 
+            thead 
+                tr 
+                    th(scope='col') #
+                    th(scope='col') name
+                    th(scope='col') songs
+                    th(scope='col') user
+                    th Ajoutez une Playlist : 
+                        button.btn.btn-primary.btn-sm(type='button')
+                                a#i-plus(href="/admin/playlist/add")
+                                    i.bi.bi-plus-square
+            tbody
+                each playlist in playLists
+                    tr 
+                        th(scope='row') #{playlist._id}
+                        td= playlist.name 
+                        td= playlist.songs.length
+                        td= playlist.user
+                        td
+                            button.btn.btn-danger.btn-sm.me-2(type='button')
+                                a#i-trash(href='/admin/playlist/delete/'+ playlist._id)
+                                    i.bi.bi-trash3
+                            button.btn.btn-primary.btn-sm(type='button')
+                                a#i-pen(href="/admin/playlist/edit/"+ playlist._id) 
+                                    i.bi.bi-pencil-square
+                    tr
+    else 
+        .alert.alert-info Aucune playlist
