@@ -1,0 +1,32 @@
+extends ../layout.pug
+
+block content 
+    .container
+        h1 La playlist #{playlist.name}
+        
+        input(type="hidden" id="artist_song") 
+        input(type="hidden" id="title_song") 
+   
+        if playlist.songs && playlist.songs.length > 0
+            script 
+                | let songs = !{JSON.stringify(playlist.songs)};
+
+
+        #countdown 
+
+        #result
+
+        #debugVoice
+
+       
+        #cardsBlindTest.d-flex.grid.gap-3(style="flex-wrap: wrap;")
+            each song in playlist.songs
+                .card.hide(style="width:10rem;")
+                    .card-body
+                        img.card-img-top(src=song.cover)
+                        strong.card-title #{song.title}
+                        p.card-text #{song.artist_name}
+
+
+    script(src="/jS/blindTest.js")
+    script(src="/jS/voice.js")

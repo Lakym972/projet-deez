@@ -25,6 +25,10 @@ export default (app) => {
         blindController.index(req, res);
     });
 
+    app.get('/blind/test/:id', (req, res) => {
+        blindController.blindTest(req, res);
+    });
+
     app.get('/register', (req, res) => {
         registerController.index(req, res);
     });

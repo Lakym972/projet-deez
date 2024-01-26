@@ -1,3 +1,15 @@
 extends ../layout.pug
 
 block content
+    .container
+        h3 Bienvenue sur TOP MUSIC le site dédié au blindtest
+
+        if playlists 
+            .d-flex.grid.gap-3(style="flex-wrap: wrap;")
+                each playlist in playlists
+                    .card(style="width:18rem;")
+                        .card-body
+                            h5.card-title #{playlist.name}
+                            .text-center.mt-4
+                                a.position-relative.btn.btn-primary(href="/blind/test/"+playlist._id) Démarrer
+                                    span.position-absolute.top-0.start-100.translate-middle.badge.border.border-light.rounded-circle.bg-danger.p-2(style="font-size:8px") #{playlist.songs.length}
