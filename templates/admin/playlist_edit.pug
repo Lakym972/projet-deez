@@ -1,8 +1,22 @@
 extends ../layout.pug
 
 block content
-    h1 Choisissez un nom pour votre Playlist 
-    form(method="post")
-        if playlist 
-            input.form-control(type="text", name="name", value=playlist.name)
+    h1 #{playlist.name} 
+    form.container(method="post")
+        if musics 
+            table.table
+                    tbody(style="display: block;max-height:400px; overflow:auto")  
+                        each music in musics
+                            tr
+                                th 
+                                    if (playlist.songs.find((song) => song.id_rapi == music.id_rapi)!=undefined)
+                                        input(type="checkbox" name="songs" Value=music.id checked="checked")
+                                    else 
+                                        input(type="checkbox" name="songs" Value=music.id)
+                                td #{music.title}
+                                td #{music.artist_name}
+                                td(style="width:100%")
+                    tfoot 
+                        tr 
+                            td.text-center(colspan=3) 
             button.btn.btn-primary.mt-2(type='submit') Validez
